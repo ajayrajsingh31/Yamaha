@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os  # Added import for os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-import os
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,11 +77,11 @@ WSGI_APPLICATION = "yamahadocker.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": os.getenv("DBNAME","bikes"),
-        "USER": os.getenv("DB_USER","root"),
-        "PASSWORD": os.getenv("DB_PASSWORD","root"),
-        "HOST": os.getenv("DB_HOST","localhost"),
-        "PORT": os.getenv("DB_PORT","3306"),
+        "NAME": os.getenv("DBNAME", "bikes"),
+        "USER": os.getenv("DB_USER", "root"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "root"),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "3306"),
     }
 }
 
@@ -115,6 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Added static root
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
