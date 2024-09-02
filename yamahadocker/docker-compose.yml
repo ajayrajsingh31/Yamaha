@@ -30,8 +30,8 @@ services:
       - DBNAME=bikes
       - DB_USER=root
       - DB_PASSWORD=root
-      - DB_HOST =mysql
-      - DB_PORT =3306
+      - DB_HOST=mysql
+      - DB_PORT=3306
     depends_on:
       mysql:
         condition: service_healthy
