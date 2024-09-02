@@ -5,19 +5,17 @@ services:
     ports:
       - '8888:3306'
     environment:
-      MYSQL_DATABASE : bikes
-      MYSQL_ROOT_PASSWORD : root
+      MYSQL_DATABASE: bikes
+      MYSQL_ROOT_PASSWORD: root
     volumes:
-      - ./app:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost","-uroot","-proot" ]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
       interval: 10s
       timeout: 20s
       retries: 3
-    command: --lower_case_table_names=1
 
   web:
-    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
